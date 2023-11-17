@@ -1,0 +1,231 @@
+#VRML_SIM R2023a utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+
+
+WorldInfo {
+}
+Viewpoint {
+  orientation 0.33213018393734534 -0.20254396069635178 -0.9212304190066565 4.165294299747671
+  position 3.962715619982985 -5.84853299949005 6.191254266026022
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  translation 0.26028 0.368433 -8.54872e-15
+  floorSize 5 5
+}
+DEF Ball Solid {
+  translation 0.85595 -0.974473 1.13
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          emissiveColor 1 1 0.498039
+          specularColor 1 0.666667 0
+        }
+        texture ImageTexture {
+        }
+      }
+      geometry Sphere {
+        radius 0.1
+      }
+      castShadows FALSE
+    }
+  ]
+  name "Ball"
+}
+Robot {
+  translation 0.962118 2.18455 0
+  children [
+    Solid {
+      children [
+        HingeJoint {
+          jointParameters HingeJointParameters {
+            axis 0 1 0
+          }
+          device [
+            RotationalMotor {
+              name "joint1"
+            }
+          ]
+          endPoint Solid {
+            rotation 0 1 0 0
+            children [
+              HingeJoint {
+                jointParameters HingeJointParameters {
+                  axis 0 0 1
+                }
+                device [
+                  RotationalMotor {
+                    name "joint2"
+                  }
+                ]
+                endPoint Solid {
+                  translation 0 0.5 1
+                  children [
+                    HingeJoint {
+                      jointParameters HingeJointParameters {
+                        axis 0 1 0
+                      }
+                      device [
+                        RotationalMotor {
+                          name "joint3"
+                        }
+                      ]
+                      endPoint Solid {
+                        translation 0.5 0.5 0
+                        rotation 0 1 0 0
+                        children [
+                          Shape {
+                            appearance Appearance {
+                            }
+                            geometry Box {
+                              size 1 0.1 0.1
+                            }
+                          }
+                        ]
+                      }
+                    }
+                    Shape {
+                      appearance Appearance {
+                      }
+                      geometry Box {
+                        size 0.1 1 0.1
+                      }
+                    }
+                  ]
+                  name "solid(1)"
+                }
+              }
+              Solid {
+                translation 0 0 0.5
+                children [
+                  Shape {
+                    appearance Appearance {
+                    }
+                    geometry Box {
+                      size 0.1 0.1 1
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+  controller "<none>"
+}
+Robot {
+  translation -0.896537 1.90619 0.5
+  children [
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 1 0
+        anchor 0 0.115 0.2
+      }
+      device [
+        RotationalMotor {
+          name "joint1"
+        }
+      ]
+      endPoint Solid {
+        translation 0 0.115 0.2
+        rotation 0 1 0 0
+        children [
+          DEF axle Shape {
+            appearance PBRAppearance {
+              baseColor 1 0.666667 0
+            }
+            geometry Box {
+              size 0.05 0.05 0.05
+            }
+          }
+          Solid {
+            translation 0.48 0.06 0
+            children [
+              HingeJoint {
+                jointParameters HingeJointParameters {
+                  axis 0 0 1
+                  anchor 1 0 0
+                }
+                device [
+                  RotationalMotor {
+                    name "joint2"
+                  }
+                ]
+                endPoint Solid {
+                  children [
+                    HingeJoint {
+                      jointParameters HingeJointParameters {
+                        axis 0 0 1
+                        anchor 1 0 0
+                      }
+                      device [
+                        RotationalMotor {
+                          name "joint3"
+                        }
+                      ]
+                      endPoint Solid {
+                        translation 1 0 0
+                        children [
+                          DEF arm2 Shape {
+                            appearance PBRAppearance {
+                              baseColor 1 0 0.45098
+                            }
+                            geometry Box {
+                              size 1 0.1 0.1
+                            }
+                          }
+                        ]
+                        boundingObject DEF arm2 Shape {
+                          appearance PBRAppearance {
+                            baseColor 1 0 0.45098
+                          }
+                          geometry Box {
+                            size 1 0.1 0.1
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+              DEF arm Shape {
+                appearance PBRAppearance {
+                  baseColor 0.054902 1 0.27451
+                }
+                geometry Box {
+                  size 1 0.1 0.1
+                }
+              }
+            ]
+            boundingObject USE arm
+          }
+        ]
+        boundingObject USE axle
+      }
+    }
+    Transform {
+      children [
+        DEF Body Shape {
+          appearance PBRAppearance {
+          }
+          geometry Box {
+            size 0.2 0.2 1
+          }
+        }
+      ]
+    }
+  ]
+  name "arm"
+  boundingObject USE Body
+  controller "<none>"
+}
+robot {
+}

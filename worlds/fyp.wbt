@@ -1,0 +1,242 @@
+#VRML_SIM R2023a utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/floors/protos/RectangleArena.proto"
+EXTERNPROTO "../protos/Ball.proto"
+
+WorldInfo {
+}
+Viewpoint {
+  orientation 0.346517250097686 -0.039848149667670724 -0.937196841838896 3.3563037713219295
+  position 6.878099872374935 -0.5335116127906931 5.746403136269863
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  translation 0.26028 0.368433 -8.54872e-15
+  floorSize 5 5
+}
+Robot {
+  translation -0.5 1.53056 0.03
+  children [
+    Solid {
+      children [
+        HingeJoint {
+          jointParameters HingeJointParameters {
+            axis 0 0 1
+            anchor -0.5 0 0
+          }
+          device [
+            RotationalMotor {
+              name "joint1"
+              minPosition -5
+              maxPosition 5
+            }
+          ]
+          endPoint Solid {
+            children [
+              Solid {
+                children [
+                  Shape {
+                    appearance PBRAppearance {
+                    }
+                    geometry Box {
+                      size 1 0.1 0.1
+                    }
+                  }
+                ]
+              }
+              HingeJoint {
+                jointParameters HingeJointParameters {
+                  axis 0 0 1
+                  anchor 0.5 0 0
+                }
+                device [
+                  RotationalMotor {
+                    name "joint2"
+                  }
+                ]
+                endPoint Solid {
+                  translation 1 0 0
+                  children [
+                    HingeJoint {
+                      jointParameters HingeJointParameters {
+                        axis 0 0 1
+                        anchor 0.5 0 0
+                      }
+                      device [
+                        RotationalMotor {
+                          name "joint3"
+                        }
+                      ]
+                      endPoint Solid {
+                        translation 1 0 0
+                        children [
+                          Shape {
+                            appearance Appearance {
+                              material Material {
+                                emissiveColor 1 0 0
+                              }
+                            }
+                            geometry Box {
+                              size 1 0.1 0.1
+                            }
+                          }
+                        ]
+                      }
+                    }
+                    Shape {
+                      appearance PBRAppearance {
+                        metalness 0
+                      }
+                      geometry Box {
+                        size 1 0.1 0.1
+                      }
+                    }
+                  ]
+                  name "solid(1)"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+  name "3joints"
+  controller "<none>"
+  controllerArgs [
+    ""
+  ]
+}
+Robot {
+  children [
+    Solid {
+      children [
+        HingeJoint {
+          jointParameters HingeJointParameters {
+            axis 0 0 1
+            anchor -0.5 0 0
+          }
+          device [
+            RotationalMotor {
+              name "joint1"
+              minPosition -5
+              maxPosition 5
+            }
+          ]
+          endPoint Solid {
+            children [
+              Solid {
+                children [
+                  Shape {
+                    appearance PBRAppearance {
+                    }
+                    geometry Box {
+                      size 1 0.1 0.1
+                    }
+                  }
+                ]
+              }
+              HingeJoint {
+                jointParameters HingeJointParameters {
+                  axis 0 0 1
+                  anchor 0.5 0 0
+                }
+                device [
+                  RotationalMotor {
+                    name "joint2"
+                  }
+                ]
+                endPoint Solid {
+                  translation 1 0 0
+                  children [
+                    Shape {
+                      appearance PBRAppearance {
+                        metalness 0
+                      }
+                      geometry Box {
+                        size 1 0.1 0.1
+                      }
+                    }
+                  ]
+                  name "solid(1)"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+  name "2joints"
+  controller "PmpMain"
+  supervisor TRUE
+}
+DEF Ball Ball {
+  translation 1.24565 -0.8866 0.03
+}
+Robot {
+  translation 0 -2 0
+  children [
+    Solid {
+      children [
+        HingeJoint {
+          jointParameters HingeJointParameters {
+            axis 0 0 1
+          }
+          device [
+            RotationalMotor {
+              name "joint1"
+            }
+          ]
+          endPoint Solid {
+            children [
+              Shape {
+                appearance PBRAppearance {
+                }
+                geometry Box {
+                  size 1 0.1 0.1
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+    Solid {
+      translation 1 0 0
+      children [
+        HingeJoint {
+          jointParameters HingeJointParameters {
+            axis 0 0 1
+            anchor -0.5 0 0
+          }
+          device [
+            RotationalMotor {
+              name "joint2"
+            }
+          ]
+          endPoint Solid {
+            children [
+              Shape {
+                appearance PBRAppearance {
+                  metalness 0
+                }
+                geometry Box {
+                  size 1 0.1 0.1
+                }
+              }
+            ]
+          }
+        }
+      ]
+      name "solid(1)"
+    }
+  ]
+  name "robot_3"
+  controller "<none>"
+}

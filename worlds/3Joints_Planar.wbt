@@ -1,0 +1,114 @@
+#VRML_SIM R2023a utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/floors/protos/RectangleArena.proto"
+EXTERNPROTO "../protos/Ball.proto"
+
+WorldInfo {
+}
+Viewpoint {
+  orientation 0.417895620440627 -0.21004321072189977 -0.8838807046463788 3.97772181859763
+  position 3.7909003846255365 -3.205228636699178 5.919169337101489
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  translation 0.26028 0.368433 -8.54872e-15
+  floorSize 5 5
+}
+Robot {
+  children [
+    Solid {
+      children [
+        HingeJoint {
+          jointParameters HingeJointParameters {
+            axis 0 0 1
+            anchor -0.5 0 0
+          }
+          device [
+            RotationalMotor {
+              name "joint1"
+              minPosition -5
+              maxPosition 5
+            }
+          ]
+          endPoint Solid {
+            children [
+              Solid {
+                children [
+                  Shape {
+                    appearance PBRAppearance {
+                    }
+                    geometry Box {
+                      size 1 0.1 0.1
+                    }
+                  }
+                ]
+              }
+              HingeJoint {
+                jointParameters HingeJointParameters {
+                  axis 0 0 1
+                  anchor 0.5 0 0
+                }
+                device [
+                  RotationalMotor {
+                    name "joint2"
+                  }
+                ]
+                endPoint Solid {
+                  translation 1 0 0
+                  children [
+                    HingeJoint {
+                      jointParameters HingeJointParameters {
+                        axis 0 0 1
+                        anchor 0.5 0 0
+                      }
+                      device [
+                        RotationalMotor {
+                          name "joint3"
+                        }
+                      ]
+                      endPoint Solid {
+                        translation 1 0 0
+                        children [
+                          Shape {
+                            appearance PBRAppearance {
+                              baseColor 0 0 0
+                            }
+                            geometry Box {
+                              size 1 0.1 0.1
+                            }
+                          }
+                        ]
+                      }
+                    }
+                    Shape {
+                      appearance PBRAppearance {
+                        metalness 0
+                      }
+                      geometry Box {
+                        size 1 0.1 0.1
+                      }
+                    }
+                  ]
+                  name "solid(1)"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+  name "3joints"
+  controller "PmpMain_3JointsPlanar"
+  supervisor TRUE
+}
+DEF Ball Ball {
+  translation 1.38083 -0.620408 0.03
+  color 1 0 0.0156863
+  mass -1
+}

@@ -1,0 +1,102 @@
+#VRML_SIM R2023a utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/floors/protos/RectangleArena.proto"
+EXTERNPROTO "../protos/Ball.proto"
+
+WorldInfo {
+}
+Viewpoint {
+  orientation 0.35653811550365727 -0.14297174939991625 -0.9232765842728974 3.8507558585578083
+  position 7.999045537871605 -4.9801807853078435 8.396796441781943
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  translation 0.26028 0.368433 -8.54872e-15
+  floorSize 5 5
+}
+Robot {
+  children [
+    Solid {
+      children [
+        HingeJoint {
+          jointParameters HingeJointParameters {
+            axis 0 0 1
+            anchor -0.5 0 0
+          }
+          device [
+            PositionSensor {
+              name "joint1_ps"
+            }
+            RotationalMotor {
+              name "joint1"
+              minPosition -5
+              maxPosition 5
+            }
+          ]
+          endPoint Solid {
+            children [
+              Solid {
+                children [
+                  Shape {
+                    appearance PBRAppearance {
+                    }
+                    geometry Box {
+                      size 1 0.1 0.1
+                    }
+                  }
+                ]
+              }
+              HingeJoint {
+                jointParameters HingeJointParameters {
+                  axis 0 0 1
+                  anchor 0.5 0 0
+                }
+                device [
+                  PositionSensor {
+                    name "joint2_ps"
+                  }
+                  RotationalMotor {
+                    name "joint2"
+                  }
+                ]
+                endPoint Solid {
+                  translation 1 0 0
+                  children [
+                    Shape {
+                      appearance PBRAppearance {
+                        metalness 0
+                      }
+                      geometry Box {
+                        size 1 0.1 0.1
+                      }
+                    }
+                  ]
+                  name "solid(1)"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+  name "2joints"
+  controller "PmpMain_2JointsPlanar"
+  supervisor TRUE
+}
+DEF Ball Ball {
+  translation 1.24565 -0.8866 0.03
+  name "Ball"
+  color 1 0.2 0
+  mass 1
+}
+Ball {
+  translation 1.61 0.67 0.02
+  name "Ball2"
+  mass -1
+}

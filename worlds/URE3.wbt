@@ -1,0 +1,46 @@
+#VRML_SIM R2023a utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/floors/protos/RectangleArena.proto"
+EXTERNPROTO "../protos/UR3e.proto"
+
+WorldInfo {
+}
+Viewpoint {
+  orientation 0.041012851935725236 0.004212432459187471 -0.9991497392227427 2.9369942401932057
+  position 2.6569914261987395 0.5973470245833512 0.6094482763018076
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  translation 0.26028 0.368433 -8.54872e-15
+  floorSize 5 5
+}
+DEF Ball Solid {
+  translation 0.45595 0.225527 0.07
+  scale 0.5 0.5 0.5
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          emissiveColor 1 1 0.498039
+          specularColor 1 0.666667 0
+        }
+        texture ImageTexture {
+        }
+      }
+      geometry Sphere {
+        radius 0.1
+      }
+      castShadows FALSE
+    }
+  ]
+  name "Ball"
+}
+UR3e {
+  controller "PmpMain_URE3"
+  supervisor TRUE
+}

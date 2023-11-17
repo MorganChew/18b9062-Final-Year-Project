@@ -1,0 +1,214 @@
+#VRML_SIM R2023a utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/floors/protos/RectangleArena.proto"
+EXTERNPROTO "../protos/Ball.proto"
+
+WorldInfo {
+}
+Viewpoint {
+  orientation 0.20547718751018082 0.17904073152089048 -0.9621452810617379 1.7461876459631358
+  position 2.0903401098516325 4.739534635821856 2.7865825087907488
+}
+Robot {
+  children [
+    Solid {
+      children [
+        HingeJoint {
+          jointParameters HingeJointParameters {
+            axis 0 1 0
+          }
+          device [
+            RotationalMotor {
+              name "joint1"
+            }
+          ]
+          endPoint Solid {
+            rotation 0 1 0 0
+            children [
+              HingeJoint {
+                jointParameters HingeJointParameters {
+                  axis 0 0 1
+                  anchor 0 0 -0.5
+                }
+                device [
+                  RotationalMotor {
+                    name "joint2"
+                  }
+                ]
+                endPoint Solid {
+                  children [
+                    HingeJoint {
+                      jointParameters HingeJointParameters {
+                        axis 0 0 1
+                        anchor 1 0 0
+                      }
+                      device [
+                        RotationalMotor {
+                          name "joint3"
+                        }
+                      ]
+                      endPoint Solid {
+                        translation 1.5 0 1
+                        children [
+                          Shape {
+                            appearance Appearance {
+                            }
+                            geometry Box {
+                              size 1 0.1 0.1
+                            }
+                          }
+                        ]
+                        name "solid(1)"
+                      }
+                    }
+                    Solid {
+                      translation 0.5 0 1
+                      children [
+                        Shape {
+                          appearance Appearance {
+                            material Material {
+                              diffuseColor 0.8 0 0
+                            }
+                          }
+                          geometry Box {
+                            size 1 0.1 0.1
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                  name "solid(1)"
+                }
+              }
+              Solid {
+                translation 0.1 0 0.5
+                children [
+                  Shape {
+                    appearance Appearance {
+                      material Material {
+                        diffuseColor 0.223529 0.596078 0.8
+                      }
+                    }
+                    geometry Box {
+                      size 0.1 0.1 1
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+  controller "PmpMain_3Joints3DOF"
+  supervisor TRUE
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  translation 0.26028 0.368433 -8.54872e-15
+  floorSize 5 5
+}
+Robot {
+  translation -0.405121 2.21889 0
+  children [
+    Solid {
+      children [
+        HingeJoint {
+          jointParameters HingeJointParameters {
+            axis 0 0 1
+            anchor -0.5 0 0
+          }
+          device [
+            RotationalMotor {
+              name "joint1"
+              minPosition -5
+              maxPosition 5
+            }
+          ]
+          endPoint Solid {
+            children [
+              Solid {
+                children [
+                  Shape {
+                    appearance PBRAppearance {
+                      baseColor 0 0.701961 1
+                    }
+                    geometry Box {
+                      size 1 0.1 0.1
+                    }
+                  }
+                ]
+              }
+              HingeJoint {
+                jointParameters HingeJointParameters {
+                  axis 0 0 1
+                  anchor 0.5 0 0
+                }
+                device [
+                  RotationalMotor {
+                    name "joint2"
+                  }
+                ]
+                endPoint Solid {
+                  translation 1 0 0
+                  children [
+                    HingeJoint {
+                      jointParameters HingeJointParameters {
+                        axis 0 0 1
+                        anchor 0.5 0 0
+                      }
+                      device [
+                        RotationalMotor {
+                          name "joint3"
+                        }
+                      ]
+                      endPoint Solid {
+                        translation 1 0 0
+                        children [
+                          Shape {
+                            appearance PBRAppearance {
+                              baseColor 0 0 0
+                            }
+                            geometry Box {
+                              size 1 0.1 0.1
+                            }
+                          }
+                        ]
+                      }
+                    }
+                    Shape {
+                      appearance PBRAppearance {
+                        metalness 0
+                      }
+                      geometry Box {
+                        size 1 0.1 0.1
+                      }
+                    }
+                  ]
+                  name "solid(1)"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+  name "3joints"
+  controller "<none>"
+}
+DEF Ball Solid {
+  translation 1.88 0.02 0.96
+  scale 4 4 4
+  children [
+    Ball {
+      mass -1
+    }
+  ]
+}
